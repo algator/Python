@@ -1,0 +1,13 @@
+import simplegui
+i = 1
+
+def timer_handler():
+    global i
+    print i
+    i = i+1
+    if i == 1001:
+        timer.stop()
+
+
+timer = simplegui.create_timer(10, timer_handler)
+timer.start()

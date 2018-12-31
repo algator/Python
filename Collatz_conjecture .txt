@@ -1,0 +1,43 @@
+#Collatz conjecture 
+
+import simplegui
+
+# global state
+
+n = 1
+nmax = 0
+
+# helper functions
+
+def init(start):
+    """Initializes n."""
+    global n
+    n = start
+    print "Input is", n
+    
+def get_next(current):
+    if current%2 == 0:
+        return current/2
+    else:
+        return current*3+1
+
+# timer callback
+
+def update():
+    global nmax, n
+    if n > nmax:
+        nmax = n
+    elif n <= 1:
+        print "max is", nmax
+        timer.stop()
+    else:
+        print get_next(n)
+        n = get_next(n)
+
+# register event handlers
+
+timer = simplegui.create_timer(1, update)
+
+# start program
+init(23)
+timer.start()
